@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/ffabiorj/codenation_logs.svg?branch=master)](https://travis-ci.org/ffabiorj/codenation_logs)
 
+[![codecov](https://codecov.io/gh/ffabiorj/codenation_logs/branch/master/graph/badge.svg)](https://codecov.io/gh/ffabiorj/codenation_logs)
+
+
 # CODENATION LOGS
 I developed this project to stored logs in a database.
 
