@@ -1,0 +1,1 @@
+web: gunicorn codenation_logs.wsgi --log-file -

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ffabiorj/codenation_logs.svg?branch=master)](https://travis-ci.org/ffabiorj/codenation_logs)
+
 # CODENATION LOGS
 I developed this project to stored logs in a database.
 
