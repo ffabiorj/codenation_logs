@@ -10,7 +10,7 @@ I developed this project to stored logs in a database.
 ## Tools
 * Django
 * Django Rest FrameWork
-
+* Postgres
 
 ## How to run locally.
 
@@ -44,6 +44,11 @@ user.save()
 - python manage.py drf_create_token <username>
 - python manage.py runserver
 - http://127.0.0.1:8000/api/v1/logs/
+```
+
+### Run tests
+```
+pytest
 ```
 
 ### Links for tools
