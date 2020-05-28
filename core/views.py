@@ -5,6 +5,7 @@ from core.serializers import LogSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 
 def home(request):
@@ -12,15 +13,19 @@ def home(request):
 
 
 class LogList(APIView):
+
     """
     List all logs, or create a new log.
     """
-    def get(self, request, format=None):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
         logs = Log.objects.all()
         serializer = LogSerializer(logs, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
+    def post(self, request):
         serializer = LogSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
