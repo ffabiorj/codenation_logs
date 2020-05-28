@@ -1,15 +1,9 @@
-# from django.shortcuts import render
-from django.http import HttpResponse
 from core.models import Log
 from core.serializers import LogSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-
-
-def home(request):
-    return HttpResponse("Hello World!")
 
 
 class LogList(APIView):
