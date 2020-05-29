@@ -2,3 +2,4 @@ Django
 python-decouple
 djangorestframework
 gunicorn
+dj_database_url
