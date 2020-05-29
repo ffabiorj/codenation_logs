@@ -3,6 +3,8 @@ from django.db import models
 
 class Log(models.Model):
     log = models.CharField(max_length=200)
+    level = models.CharField(max_length=20)
+    event = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
