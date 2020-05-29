@@ -11,6 +11,7 @@ I developed this project to stored logs in a database.
 * Django
 * Django Rest FrameWork
 * Postgres
+* Heroku (Cloud)
 
 ## How to run locally.
 
