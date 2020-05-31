@@ -16,7 +16,7 @@ def test_post_status_code_201():
     user = User.objects.create_user(username="Fabio", password="test",)
     token, created = Token.objects.get_or_create(user=user)
     client = APIClient(HTTP_AUTHORIZATION="Token " + token.key)
-    data = {"log": "Test"}
+    data = {"log": "Test", "level": "warning", "event": 100}
     result = client.post(
         reverse("logs"), data=json.dumps(data), content_type="application/json"
     )
@@ -25,7 +25,7 @@ def test_post_status_code_201():
 
 def test_post_status_code_401():
     client = APIClient(HTTP_AUTHORIZATION="")
-    data = {"log": "Test"}
+    data = {"log": "Test", "level": "warning", "event": 100}
     result = client.post(
         reverse("logs"), data=json.dumps(data), content_type="application/json"
     )
