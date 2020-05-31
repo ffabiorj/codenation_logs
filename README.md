@@ -3,8 +3,11 @@
 [![codecov](https://codecov.io/gh/ffabiorj/codenation_logs/branch/master/graph/badge.svg)](https://codecov.io/gh/ffabiorj/codenation_logs)
 
 
-# CODENATION LOGS
+# CODENATION LOGS API
 I developed this project to stored logs in a database.
+
+### Documentation of API
+[Link](https://app.swaggerhub.com/apis-docs/ffabiorj/logs/1.0.0-oas3#/) 
 
 
 ## Tools
@@ -37,11 +40,9 @@ I developed this project to stored logs in a database.
 - mv .env_exemplo .env
 - python manage.py migrate
 - python manage.py shell
-from django.contrib.auth.models import User
-user = User.objects.create_user(
-                                'yourname', 
-                                password='your password')
-user.save()
+  from django.contrib.auth.models import User
+  user = User.objects.create_user('yourname', password='your password')
+  user.save()
 - python manage.py drf_create_token <username>
 - python manage.py runserver
 - http://127.0.0.1:8000/api/v1/logs/
