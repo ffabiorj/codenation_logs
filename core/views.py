@@ -1,3 +1,4 @@
+from django.http import Http404
 from core.models import Log
 from core.serializers import LogSerializer
 from rest_framework.views import APIView
@@ -25,3 +26,27 @@ class LogList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogDetail(APIView):
+    """
+    Retrive, or delete a log instance
+    """
+
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Log.objects.get(pk=pk)
+        except Log.DoesNotExists:
+            raise Http404
+
+    def get(self, request, pk):
+        log = self.get_object(pk)
+        serializer = LogSerializer(log)
+        return Response(serializer.data)
+
+    def delete(self, request, pk):
+        log = self.get_object(pk)
+        log.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
