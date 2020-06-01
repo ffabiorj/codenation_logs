@@ -38,7 +38,7 @@ class LogDetail(APIView):
     def get_object(self, pk):
         try:
             return Log.objects.get(pk=pk)
-        except Log.DoesNotExists:
+        except Log.DoesNotExist:
             raise Http404
 
     def get(self, request, pk):
