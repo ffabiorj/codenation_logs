@@ -13,6 +13,7 @@ I developed this project to stored logs in a database.
 ## Tools
 * Django
 * Django Rest FrameWork
+* JWT
 * Postgres
 * Heroku (Cloud)
 
