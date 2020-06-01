@@ -7,7 +7,7 @@
 I developed this project to stored logs in a database.
 
 ### Documentation of API
-[Link](https://app.swaggerhub.com/apis-docs/ffabiorj/logs/1.0.0) 
+[Link](https://app.swaggerhub.com/apis-docs/ffabiorj/logs/1.0.0-oas3) 
 
 
 ## Tools
