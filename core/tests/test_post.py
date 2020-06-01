@@ -13,9 +13,15 @@ from rest_framework.status import (
 
 @pytest.mark.django_db
 def test_post_status_code_201():
-    user = User.objects.create_user(username="Fabio", password="test",)
-    token, created = Token.objects.get_or_create(user=user)
-    client = APIClient(HTTP_AUTHORIZATION="Token " + token.key)
+    client = APIClient()
+    url = reverse('token')
+    User.objects.create_user(username="teste", password="teste",)
+    data = {
+        "username": "teste",
+        "password": "teste"
+    }
+    token = client.post(url, data=data, follow=True)
+    client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data['access'])
     data = {"log": "Test", "level": "warning", "event": 100}
     result = client.post(
         reverse("logs"), data=json.dumps(data), content_type="application/json"
@@ -34,9 +40,15 @@ def test_post_status_code_401():
 
 @pytest.mark.django_db
 def test_post_wrong_input_data():
-    user = User.objects.create_user(username="Fabio", password="test",)
-    token, created = Token.objects.get_or_create(user=user)
-    client = APIClient(HTTP_AUTHORIZATION="Token " + token.key)
+    client = APIClient()
+    url = reverse('token')
+    User.objects.create_user(username="teste", password="teste",)
+    data = {
+        "username": "teste",
+        "password": "teste"
+    }
+    token = client.post(url, data=data, follow=True)
+    client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data['access'])
     data = {"1": "1"}
     result = client.post(
         reverse("logs"), data=json.dumps(data), content_type="application/json"
