@@ -35,21 +35,20 @@ def test_get_log_by_id():
     user = User.objects.create_user(username="Fabio", password="test",)
     token, created = Token.objects.get_or_create(user=user)
     client = APIClient(HTTP_AUTHORIZATION="Token " + token.key)
-    result = client.get(
-        reverse("log", kwargs={'pk': log.pk}))
+    result = client.get(reverse("log", kwargs={"pk": log.pk}))
     assert result.status_code == HTTP_200_OK
+
 
 @pytest.mark.django_db
 def test_get_log_by_non_existent_id():
     user = User.objects.create_user(username="Fabio", password="test",)
     token, created = Token.objects.get_or_create(user=user)
     client = APIClient(HTTP_AUTHORIZATION="Token " + token.key)
-    result = client.get(
-        reverse("log", kwargs={'pk': 30}))
+    result = client.get(reverse("log", kwargs={"pk": 30}))
     assert result.status_code == HTTP_404_NOT_FOUND
+
 
 def test_get_log_by_id_unauthorized():
     client = APIClient(HTTP_AUTHORIZATION="")
-    result = client.get(
-        reverse("log", kwargs={'pk': 1}))
+    result = client.get(reverse("log", kwargs={"pk": 1}))
     assert result.status_code == HTTP_401_UNAUTHORIZED
