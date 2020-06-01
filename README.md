@@ -7,7 +7,7 @@
 I developed this project to stored logs in a database.
 
 ### Documentation of API
-[Link](https://app.swaggerhub.com/apis-docs/ffabiorj/logs/1.0.0-oas3#/) 
+[Link](https://app.swaggerhub.com/apis-docs/ffabiorj/logs/1.0.0) 
 
 
 ## Tools
@@ -57,3 +57,9 @@ pytest
 [Django](https://docs.djangoproject.com/)
 
 [Django Rest Framework](https://www.django-rest-framework.org/)
+
+[Codecov](https://codecov.io/)
+
+[Travis](https://travis-ci.com/)
+
+[Heroku](https://dashboard.heroku.com/)
