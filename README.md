@@ -17,6 +17,14 @@ I developed this project to stored logs in a database.
 * Postgres
 * Heroku (Cloud)
 
+## Production
+[link](https://codenation-logs.herokuapp.com/api/v1/logs/)
+
+To test de api
+```
+username: teste password: teste
+```
+
 ## How to run locally.
 
 1. Clone the repository.
@@ -42,7 +50,7 @@ I developed this project to stored logs in a database.
 - python manage.py migrate
 - python manage.py shell
   from django.contrib.auth.models import User
-  user = User.objects.create_user('yourname', password='your password')
+  user = User.objects.create_user(username=<yourname>', password='<password>')
   user.save()
 - python manage.py runserver
 - http://127.0.0.1:8000/api/v1/token/ username=<user> password=<password>
