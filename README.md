@@ -45,7 +45,7 @@ I developed this project to stored logs in a database.
   user = User.objects.create_user('yourname', password='your password')
   user.save()
 - python manage.py runserver
-- http://127.0.0.1:8000/api/v1/logs/ username=<user> password=<password>
+- http://127.0.0.1:8000/api/v1/token/ username=<user> password=<password>
 - http://127.0.0.1:8000/api/v1/logs/
 ```
 
