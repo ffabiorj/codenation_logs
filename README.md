@@ -27,8 +27,8 @@ I developed this project to stored logs in a database.
 6. Rename the file env_exemplo
 7. Run migrations
 8. Create an user
-9. Create a token
-10. Run the project
+9. Run the project
+10. Create a token
 11. Access the link
 
 
@@ -44,8 +44,8 @@ I developed this project to stored logs in a database.
   from django.contrib.auth.models import User
   user = User.objects.create_user('yourname', password='your password')
   user.save()
-- python manage.py drf_create_token <username>
 - python manage.py runserver
+- http://127.0.0.1:8000/api/v1/logs/ username=<user> password=<password>
 - http://127.0.0.1:8000/api/v1/logs/
 ```
 
