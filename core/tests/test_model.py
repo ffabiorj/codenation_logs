@@ -3,16 +3,15 @@ import pytest
 
 
 @pytest.mark.django_db
-def create_one_log():
+def test_set_archived_for_true():
     log = Log.objects.create(log="Teste", level="warning", event=100)
-    return log is True
-
+    log.archived_true()
+    assert log.archived == True
 
 @pytest.mark.django_db
 def test_str_of_log():
     log = Log.objects.create(log="Teste", level="warning", event=100)
     assert log.__str__() == "Teste"
-
 
 @pytest.mark.django_db
 def test_len_of_log_equal_one():
