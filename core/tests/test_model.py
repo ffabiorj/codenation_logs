@@ -1,21 +1,22 @@
 from core.models import Log
-import pytest
+from django.test import TestCase
 
 
-@pytest.mark.django_db
-def test_set_archived_for_true():
-    log = Log.objects.create(log="Teste", level="warning", event=100)
-    log.archived_true()
-    assert log.archived is True
+class LogModelTest(TestCase):
+    def setUp(self):
+        self.log = Log.objects.create(log="Teste1", level="warning1", event=100)
+        Log.objects.create(log="Teste2", level="warning2", event=100)
+        Log.objects.create(log="Teste3", level="warning3", event=100)
+        self.logs = Log.objects.all()
 
+    def test_set_archived_for_true(self):
+        self.log.archived_true()
+        assert self.log.archived is True
 
-@pytest.mark.django_db
-def test_str_of_log():
-    log = Log.objects.create(log="Teste", level="warning", event=100)
-    assert log.__str__() == "Teste"
+    def test_str_of_log(self):
+        exepect = self.log.__str__()
+        assert exepect == "Teste1"
 
-
-@pytest.mark.django_db
-def test_len_of_log_equal_one():
-    log = Log.objects.create(log="Teste", level="warning", event=100)
-    return log == 1
+    def test_log_equal_one(self):
+        expect = self.logs.count()
+        assert expect == 3
