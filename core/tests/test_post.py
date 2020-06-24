@@ -25,7 +25,7 @@ class PostLogTest(TestCase):
     def test_post_status_code_201(self):
         data = {"log": "Test", "level": "warning", "event": 100}
         result = self.client.post(
-            reverse("logs"), data=json.dumps(data), content_type="application/json"
+            reverse("log"), data=json.dumps(data), content_type="application/json"
         )
         assert result.status_code == HTTP_201_CREATED
 
@@ -33,13 +33,13 @@ class PostLogTest(TestCase):
         self.client = APIClient(HTTP_AUTHORIZATION="")
         data = {"log": "Test", "level": "warning", "event": 100}
         result = self.client.post(
-            reverse("logs"), data=json.dumps(data), content_type="application/json"
+            reverse("log"), data=json.dumps(data), content_type="application/json"
         )
         assert result.status_code == HTTP_401_UNAUTHORIZED
 
     def test_post_wrong_input_data(self):
         data = {"1": "1"}
         result = self.client.post(
-            reverse("logs"), data=json.dumps(data), content_type="application/json"
+            reverse("log"), data=json.dumps(data), content_type="application/json"
         )
         assert result.status_code == HTTP_400_BAD_REQUEST
