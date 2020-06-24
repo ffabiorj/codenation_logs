@@ -1,8 +1,8 @@
 from rest_framework.test import APIClient
 from core.models import Log
 from django.urls import reverse
-import pytest
 from django.contrib.auth.models import User
+from django.test import TestCase
 from rest_framework.status import (
     HTTP_401_UNAUTHORIZED,
     HTTP_204_NO_CONTENT,
@@ -10,38 +10,29 @@ from rest_framework.status import (
 )
 
 
-@pytest.mark.django_db
-def test_delete_log_by_id():
-    client = APIClient()
-    url = reverse("token")
-    log = Log.objects.create(log="Teste", level="warning", event=100)
-    User.objects.create_user(
-        username="teste", password="teste",
-    )
-    data = {"username": "teste", "password": "teste"}
-    token = client.post(url, data=data, follow=True)
-    client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data["access"])
-    result = client.delete(reverse("log", kwargs={"pk": log.pk}))
+class DeleteLogTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        url = reverse("token")
+        self.log = Log.objects.create(log="Teste", level="warning", event=100)
+        User.objects.create_user(
+            username="teste", password="teste",
+        )
+        data = {"username": "teste", "password": "teste"}
+        token = self.client.post(url, data=data, follow=True)
 
-    assert result.status_code == HTTP_204_NO_CONTENT
+        self.client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data["access"])
 
+    def test_delete_log_by_id(self):
+        expect = self.client.delete(reverse("log", kwargs={"pk": self.log.pk}))
 
-@pytest.mark.django_db
-def test_delete_unauthorized_log():
-    client = APIClient(HTTP_AUTHORIZATION="")
-    result = client.delete(reverse("log", kwargs={"pk": 1}))
-    assert result.status_code == HTTP_401_UNAUTHORIZED
+        assert expect.status_code == HTTP_204_NO_CONTENT
 
+    def test_delete_unauthorized_log(self):
+        self.client = APIClient(HTTP_AUTHORIZATION="")
+        result = self.client.delete(reverse("log", kwargs={"pk": 1}))
+        assert result.status_code == HTTP_401_UNAUTHORIZED
 
-@pytest.mark.django_db
-def test_delete_non_existent_id():
-    client = APIClient()
-    url = reverse("token")
-    User.objects.create_user(
-        username="teste", password="teste",
-    )
-    data = {"username": "teste", "password": "teste"}
-    token = client.post(url, data=data, follow=True)
-    client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data["access"])
-    result = client.delete(reverse("log", kwargs={"pk": 30}))
-    assert result.status_code == HTTP_404_NOT_FOUND
+    def test_delete_non_existent_id(self):
+        result = self.client.delete(reverse("log", kwargs={"pk": 30}))
+        assert result.status_code == HTTP_404_NOT_FOUND
