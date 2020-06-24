@@ -20,17 +20,17 @@ class GetLogTest(TestCase):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data["access"])
 
     def test_get_status_code_200(self):
-        result = self.client.get(reverse("logs"))
+        result = self.client.get(reverse("log"))
         assert result.status_code == HTTP_200_OK
 
     def test_get_status_code_401(self):
         self.client = APIClient(HTTP_AUTHORIZATION="")
-        result = self.client.get(reverse("logs"))
+        result = self.client.get(reverse("log"))
         assert result.status_code == HTTP_401_UNAUTHORIZED
 
     def test_get_message_error(self):
         self.client = APIClient(HTTP_AUTHORIZATION="")
-        result = self.client.get(reverse("logs"))
+        result = self.client.get(reverse("log"))
         expected = {"detail": "Authentication credentials were not provided."}
         assert result.json() == expected
 
