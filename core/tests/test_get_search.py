@@ -23,7 +23,6 @@ class SearchLogTest(TestCase):
         result = self.client.get(reverse("search_logs"))
         assert result.status_code == HTTP_200_OK
 
-
     def test_get_status_code_401(self):
         self.client = APIClient(HTTP_AUTHORIZATION="")
         result = self.client.get(reverse("search_logs"))
