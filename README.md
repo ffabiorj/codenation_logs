@@ -55,7 +55,17 @@ username: teste password: teste
 - python manage.py runserver
 - http://127.0.0.1:8000/api/v1/token/ username=<user> password=<password>
 - http://127.0.0.1:8000/api/v1/logs/
+
 ```
+
+##
+Endpoints of api
+- http://127.0.0.1:8000/api/v1/token/ # pass an username and password.
+- http://127.0.0.1:8000/api/v1/token/refresh/ # refresh token
+- http://127.0.0.1:8000/api/v1/logs/ # search ou return all logs if does not match.
+- http://127.0.0.1:8000/api/v1/log/ # return all logs.
+- http://127.0.0.1:8000/api/v1/log/<id>/ # return one log if exists.
+
 
 ### Run tests
 ```
