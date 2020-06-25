@@ -19,6 +19,11 @@ class SearchLogTest(TestCase):
 
         self.client.credentials(HTTP_AUTHORIZATION="Bearer " + token.data["access"])
 
+    def test_get_first_result(self):
+        result = self.client.get(reverse("search_logs"))
+        expect = result.json()["results"][0]["log"]
+        assert expect == "Teste"
+
     def test_get_status_code_200(self):
         result = self.client.get(reverse("search_logs"))
         assert result.status_code == HTTP_200_OK
